@@ -29,6 +29,8 @@ app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
 
 
+
+// move this down to authentication
 app.listen(3000, function() {
   console.log('Immrama is listening to the tales of your journey from port 3000.')
 });
