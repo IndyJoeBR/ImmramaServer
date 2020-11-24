@@ -14,23 +14,28 @@ const chapterController = require('./controllers/chapterController');
 app.use(express.json());
 
 
-// Test Route
+// Test Route   http://localhost:3000   /immrama/test
 app.use('/immrama/test', function(request, response) {
   response.send("This is a test endpoint. It's from the server.")
 });
+// Heroku route: https://immramaserver.heroku.com
 
 // User Route
 app.use('/user', userController);
 
 
 //Protected Routes
-//app.use("/character", middlewares.ValidateJWT, controllers.Character);
+
+
+//app.use("/character", middlewares.ValidateJWT, controllers.Character);      TURN THIS ON AFTER HEROKU IS WORKING
 app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
 
 
 
 // move this down to authentication
+  
+
 
 /*   DELETE WHEN FULLY FUNCTIONAL
 app.listen(3000, function() {
