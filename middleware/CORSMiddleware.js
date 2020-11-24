@@ -5,4 +5,4 @@ const CorsMiddleware = (request, response, next) => {
   return next();
 }
 
-module.exports = CORSMiddleware;
+module.exports = CorsMiddleware;

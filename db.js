@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');     // Import Sequelize package  
 
-const theDatabase = new Sequelize(process.env.DATABASE_URL, {dialect: "postgres"});
+const sequelize = new Sequelize(process.env.DATABASE_URL, {dialect: "postgres"});
 
 /* Original - changed to the above for Heroku deployment
           DELETE WHEN COMPLETE
-const theDatabase = new Sequelize(    // Immrama's sequelize
+const sequelize = new Sequelize(    // Immrama's sequelize
   'immrama',               // name of database
   'postgres',              // name of database super-user
   'dbpassword', {          // database password
@@ -15,9 +15,9 @@ const theDatabase = new Sequelize(    // Immrama's sequelize
 
 
 // Create Database Associations
-const UserModel = theDatabase.import("./Models/User");
-const JourneyModel = theDatabase.import("./Models/Journey");
-const ChapterModel = theDatabase.import("./Models/Chapter");
+const UserModel = sequelize.import("./Models/User");
+const JourneyModel = sequelize.import("./Models/Journey");
+const ChapterModel = sequelize.import("./Models/Chapter");
 //const UserModel = Sequelize.import("./Models/User");                        DELETE WHEN COMPLETE
 //const JourneyModel = Sequelize.import("./Models/Journey");                  DELETE WHEN COMPLETE
 //const ChapterModel = Sequelize.import("./Models/Chapter");                  DELETE WHEN COMPLETE
@@ -38,4 +38,4 @@ ChapterModel.belongsTo(UserModel);
 
 
 
-module.exports = theDatabase;
+module.exports = sequelize;
