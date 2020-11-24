@@ -31,9 +31,17 @@ app.use('/chapter', chapterController);
 
 
 // move this down to authentication
+
+/*   DELETE WHEN FULLY FUNCTIONAL
 app.listen(3000, function() {
   console.log('Immrama is listening to the tales of your journey from port 3000.')
 });
+*/
+
+// move this down to authentication
+app.listen(process.env.PORT, () => {
+  console.log(`Immrama is listening to the tales of your journey from port ${process.env.PORT}`);
+})
 
 
 
