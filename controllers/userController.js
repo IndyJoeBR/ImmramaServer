@@ -6,8 +6,9 @@ const sequelize = require("../db");
 const UserModel = sequelize.import("../models/User");
 
 
-
-// User Test Controller .../user/register
+// **********   REGISTER   **********
+// User Register Controller .../user/register
+// Heroku: https://immramaserver.herokuapp.com/user/register
 userController.post('/register', function(request, response){
 
   let username = request.body.user.username;
@@ -40,7 +41,9 @@ userController.post('/register', function(request, response){
 });  //  End of user registration/creation
 
 
-// User Test Controller .../user/login
+// **********   LOGIN   **********
+// User Login Controller .../user/login
+// Heroku: https://immramaserver.herokuapp.com//user/login
 userController.post('/login', function(request, response) {
   
   UserModel.findOne( { where: { username: request.body.user.username } } )     
@@ -89,23 +92,25 @@ userController.post('/login', function(request, response) {
 
 
 
-
-
-
-
-
-
-// User Test Controller .../user/userinfo
+// **********   USER INFO   **********
+// User Info Controller .../user/userinfo
+// Heroku: https://immramaserver.herokuapp.com/user/userinfo
 userController.get('/userinfo', function(request, response) {
   response.send("[server] user data request went through!")
 });  //  End of user profile retrieval
 
-// User Test Controller .../user/changepassword
+
+// **********   CHANGE PASSWORD   **********
+// User Change Password Controller .../user/changepassword
+// Heroku: https://immramaserver.herokuapp.com/user/changepassword
 userController.put('/changepassword', function(request, response) {
   response.send("[server] user changepassword went through!")
 });  //  End of change password
 
-// User Test Controller .../user/smite
+
+// **********   DELETE   **********
+// User DELETION Controller .../user/smite
+// Heroku: https://immramaserver.herokuapp.com/user/smite
 userController.delete('/smite', function(request, response) {
   response.send("[server] user has been terminated, but his journey remains.")
 });  //  End of user destruction
@@ -116,6 +121,7 @@ userController.delete('/smite', function(request, response) {
 
 //********************************************************** 
 // User Test Controller .../user/userTest
+// Heroku:  https://immramaserver.herokuapp.com/user/userTest
 userController.get('/userTest', function(request, response){
   response.send("[server] user test went through!")
 }); //  Keep for debug
