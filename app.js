@@ -19,6 +19,8 @@ app.use('/immrama/test', function(request, response) {
   response.send("This is a test endpoint. It's from the server.")
 });
 // Heroku route: https://immramaserver.heroku.com
+//      this should be the correct URL
+// DATABASE_URL="postgresql://postgres:xxxxxxxxx@localhost/Heroku-Immrama"
 
 // User Route
 app.use('/user', userController);
@@ -45,7 +47,7 @@ app.listen(3000, function() {
 
 // move this down to authentication
 app.listen(process.env.PORT, () => {
-  console.log(`Immrama is listening to the tales of your journey from port ${process.env.PORT}`);
+  console.log(`Immrama is listening to tales of your journey from port ${process.env.PORT}`);
 })
 
 
