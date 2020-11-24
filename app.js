@@ -48,12 +48,10 @@ app.listen(3000, function() {
 */
 
 // move this down to authentication
-/*
+
 app.listen(process.env.PORT, () => {
   console.log(`Immrama is listening to tales of your journey from port ${process.env.PORT}`);
 })
-
-
 
 
   // SHOULD BE AT THE BOTTOM
@@ -70,7 +68,7 @@ sequelize.authenticate()          // Tests connection, of okay
 
 
 
-*/
+
 
 
 
@@ -82,7 +80,7 @@ app.get("/", (req, res) => {
       message: "Welcome to the Personary app!",
     });
   });
-*/
+
 
   sequelize.authenticate()
   .then(() => db.sync())
@@ -95,4 +93,4 @@ app.get("/", (req, res) => {
     console.log("[server]: The server is not listening.");
     console.log(err);
   });
-
+*/
