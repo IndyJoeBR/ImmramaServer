@@ -1,16 +1,16 @@
 require("dotenv").config(); 
 const express = require("express");
-const theDatabase = require("./db");
+const sequelize = require("./db");
 
 const app = express();
 
-// const middlewares = require("./middleware");
+//const CORSmiddlewares = require("./middleware/CORSMiddleware");       //   DELETE IF NOT REQUIRED, now located in app.use directly
 
 const userController = require('./controllers/userController');
 const journeyController = require('./controllers/journeyController');
 const chapterController = require('./controllers/chapterController');
 
-app.use(middlewares.CORS);
+app.use( require("./middleware/CORSMiddleware") );
 app.use(express.json());
 
 
@@ -61,8 +61,8 @@ app.listen(process.env.PORT, () => {
 
 
   // SHOULD BE AT THE BOTTOM
-theDatabase.authenticate()
-  .then(() => theDatabase.sync())
+sequelize.authenticate()
+  .then(() => sequelize.sync())
   .then(
     function() {         // fire a function that shows if we're connected
       console.log('Connected to the Immrama postgres database');
