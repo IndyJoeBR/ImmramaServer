@@ -22,6 +22,8 @@ app.use('/immrama/test', function(request, response) {
 //      this should be the correct URL
 // DATABASE_URL="postgresql://postgres:xxxxxxxxx@localhost/Heroku-Immrama"
 
+// DELETE THIS LINE
+
 // User Route
 app.use('/user', userController);
 
