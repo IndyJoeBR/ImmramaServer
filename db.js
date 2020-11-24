@@ -18,7 +18,7 @@ const theDatabase = new Sequelize(    // Immrama's sequelize
 const UserModel = theDatabase.import("./Models/User");
 const JourneyModel = theDatabase.import("./Models/Journey");
 const ChapterModel = theDatabase.import("./Models/Chapter");
-//const UserModel = Sequelize.import("./Models/User");                  DELETE WHEN COMPLETE
+//const UserModel = Sequelize.import("./Models/User");                        DELETE WHEN COMPLETE
 //const JourneyModel = Sequelize.import("./Models/Journey");                  DELETE WHEN COMPLETE
 //const ChapterModel = Sequelize.import("./Models/Chapter");                  DELETE WHEN COMPLETE
 

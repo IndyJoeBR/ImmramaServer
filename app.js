@@ -10,7 +10,7 @@ const userController = require('./controllers/userController');
 const journeyController = require('./controllers/journeyController');
 const chapterController = require('./controllers/chapterController');
 
-//app.use(middlewares.CORS);
+app.use(middlewares.CORS);
 app.use(express.json());
 
 
@@ -54,7 +54,22 @@ app.listen(process.env.PORT, () => {
 
 
 
-/*
+
+
+  // SHOULD BE AT THE BOTTOM
+theDatabase.authenticate()
+  .then(() => theDatabase.sync())
+  .then(
+    function() {         // fire a function that shows if we're connected
+      console.log('Connected to the Immrama postgres database');
+    },
+    function(err) {      // fire an error if there are any errors
+      console.log(err);
+    }
+  );
+
+
+  /*
 
 
 app.get("/", (req, res) => {
@@ -76,15 +91,3 @@ app.get("/", (req, res) => {
   });
 
   */
-
-  // SHOULD BE AT THE BOTTOM
-theDatabase.authenticate()
-  .then(() => theDatabase.sync())
-  .then(
-    function() {         // fire a function that shows if we're connected
-      console.log('Connected to the Immrama postgres database');
-    },
-    function(err) {      // fire an error if there are any errors
-      console.log(err);
-    }
-  );
