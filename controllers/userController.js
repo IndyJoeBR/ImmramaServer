@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Express = require('express');
 const userController = Express.Router();
-const sequelize = require("../db");
-const UserModel = sequelize.import("../models/User");
+const theDatabase = require("../db");
+const UserModel = theDatabase.import("../models/User");
 
 
 

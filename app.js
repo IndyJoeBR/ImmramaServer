@@ -1,6 +1,6 @@
 require("dotenv").config(); 
 const express = require("express");
-const sequelize = require("./db");
+const theDatabase = require("./db");
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use('/immrama/test', function(request, response) {
   response.send("This is a test endpoint. It's from the server.")
 });
-// Heroku route: https://immramaserver.heroku.com
+// Heroku route: https://immramaserver.herokuapp.com/
 //      this should be the correct URL
 // DATABASE_URL="postgresql://postgres:xxxxxxxxx@localhost/Heroku-Immrama"
 
