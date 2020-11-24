@@ -1,6 +1,6 @@
 const Express = require('express');
 const journeyController = Express.Router();
-const theDatabase = require("../db");
+const sequelize = require("../db");
 const UserModel = require('../models/Journey');
 
 //const JourneyModel = require("../models");
