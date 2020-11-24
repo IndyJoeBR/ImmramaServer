@@ -1,7 +1,8 @@
 const CorsMiddleware = (request, response, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', "Content-Type, authorization");
+  response.header('access-control-allow-origin', '*');
+  response.header('access-control-allow-methods', 'POST, PUT, GET, DELETE, OPTIONS');
+  response.header('access-control-allow-headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
   return next();
 }
 
