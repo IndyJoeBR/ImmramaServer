@@ -15,9 +15,9 @@ const sequelize = new Sequelize(    // Immrama's sequelize
 
 
 // Create Database Associations
-const UserModel = sequelize.import("./Models/User");
-const JourneyModel = sequelize.import("./Models/Journey");
-const ChapterModel = sequelize.import("./Models/Chapter");
+const UserModel = sequelize.import("./models/User");
+const JourneyModel = sequelize.import("./models/Journey");
+const ChapterModel = sequelize.import("./models/Chapter");
 //const UserModel = Sequelize.import("./Models/User");                        DELETE WHEN COMPLETE
 //const JourneyModel = Sequelize.import("./Models/Journey");                  DELETE WHEN COMPLETE
 //const ChapterModel = Sequelize.import("./Models/Chapter");                  DELETE WHEN COMPLETE
