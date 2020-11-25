@@ -93,14 +93,13 @@ userController.get('/userinfo/:username', function(request, response) {
   })
   .then(
     function findOneSuccess(data) {
-      response.json(data)
+      response.json(data);
+      response.send("[server] user data request went through!");
     },
     function findOneError(err) {
       response.send(500, err.message);
     }
   );
-
-  response.send("[server] user data request went through!")
 });  //  End of user profile retrieval
 
 
