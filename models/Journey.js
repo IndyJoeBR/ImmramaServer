@@ -53,7 +53,7 @@ const JourneyModel = theDatabase.define('journey', {
   }
 }); //  End of User model
 
-// journeyOwner should be inserted as ________ due to db associations
+// userId (journeyOwner) is also available
 
 module.exports = JourneyModel;
 

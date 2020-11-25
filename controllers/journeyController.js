@@ -1,19 +1,11 @@
 const Express = require('express');
 const journeyController = Express.Router();
 const sequelize = require("../db");
-const UserModel = require('../models/Journey');
+const JourneyModel = sequelize.require('../models/Journey');
 
 //const JourneyModel = require("../models");
 
 
-
-
-
-
-// User Test Controller .../journey/journeyTest
-journeyController.get('/journeyTest', function(request, response){
-  response.send("Journey test went through!")
-});
 
 
 /*  TODO Journey Routes
@@ -25,30 +17,45 @@ journeyController.get('/journeyTest', function(request, response){
       DELETE/:id
 */
 
-
+//
 journeyController.post('/journeyCreate', function(request, response) {
+  response.send("Journey created!")
 });  //  End of journey creation
 
 
 journeyController.get('/journey/all', function(request, response) {
-});  //  End of user login
+  response.send("All journeys retrieved")
+});  //  End of journey get all
 
-journeyController.get('/journey/:journey_owner', function(request, response) {
-});  //  End of user login
+journeyController.get('/journey/:userId', function(request, response) {
+  response.send("Journeys by user retrieved")
+});  //  End of get owner journeys
 
 
 journeyController.get('/journey/:id', function(request, response) {
-});  //  End of user profile retrieval
+  response.send("Journey by id went through!")
+});  //  End of get journey by id
 
 
 journeyController.put('/journeyUpdate', function(request, response) {
+  response.send("Journey update went through!")
 });  //  End of update journey
 
 journeyController.delete('/journeyDelete', function(request, response) {
+  response.send("Journey delete went through!")
 });  //  End of journey deletion
 
 
 
+
+//******************************************************************
+// Journey Test Controller .../journey/journeyTest
+// Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
+// Postman Test: GET, ^^^^^^^^, set to Headers
+journeyController.get('/journeyTest', function(request, response){
+  response.send("Journey test went through!")
+});
+//******************************************************************
 
 
 
