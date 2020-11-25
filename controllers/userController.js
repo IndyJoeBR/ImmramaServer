@@ -79,43 +79,92 @@ userController.post('/login', function(request, response) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // **********   USER INFO   **********
+// REQUIRES: username
 // User Info Controller .../user/userinfo
-// Heroku: https://immramaserver.herokuapp.com/user/userinfo
-userController.get('/userinfo', function(request, response) {
+// Heroku: https://immramaserver.herokuapp.com/user/userinfo/:username
+userController.get('/userinfo/:username', function(request, response) {
+  UserModel.findOne({
+    where: {username: request.params.username}      // look in URL for username
+  })
+  .then(
+    function findOneSuccess(data) {
+      response.json(data)
+    },
+    function findOneError(err) {
+      response.send(500, err.message);
+    }
+  );
+
   response.send("[server] user data request went through!")
 });  //  End of user profile retrieval
 
 
+
+
 // **********   CHANGE PASSWORD   **********
+// REQUIRES: username, password (current/old), password (new)
 // User Change Password Controller .../user/changepassword
 // Heroku: https://immramaserver.herokuapp.com/user/changepassword
 userController.put('/changepassword', function(request, response) {
-  response.send("[server] user changepassword went through!")
+  UserModel.findOne ( { where: {username: request.body.user.username}})
+    .then (
+      function(user) {
+        if (user) {
+          bcrypt.compare(request.body.user.oldPassword, user.passwordhash,
+            function (err, matches) {
+              if (matches) {
+                user.passwordhash = bcrypt.hashSync(request.body.user.newPassword, 12)
+                user.update(user, {fields: ['passwordhash'] })
+                .then ( () => {
+                  response.status(200).send(user);
+                })
+              } else {
+                response.status(502).send( {error: "[server] Old password did not match."});
+              }
+            })  //  end of bcrypt
+        } else {
+          response.status(502).send( {error: "[server] Failed to authenticate"});
+        }
+      }, //  end of first function
+      function (err) {
+        response.status(501).send( {error: "[server] Password change failed."})
+      }
+    )
 });  //  End of change password
 
 
+
 // **********   DELETE   **********
+// REQUIRES: username, password
 // User DELETION Controller .../user/smite
 // Heroku: https://immramaserver.herokuapp.com/user/smite
 userController.delete('/smite', function(request, response) {
-  response.send("[server] user has been terminated, but his journey remains.")
+  UserModel.findOne( {where: { username: request.body.user.username} } )
+    .then (
+      function(user) {
+        if (user) {
+          console.log("User to be deleted:", user);
+          bcrypt.compare(request.body.user.password, user.passwordhash,
+            function(err, matches) {
+              if(matches) {
+                User.destroy( {
+                  where: { username: request.body.user.username } } ) // destroy
+                  .then (
+                    function deleteAccountSuccess(data) {
+                      response.send("[server] user has been terminated, but the journey remains.")
+                    },
+                    function deleteAccountError(err) {
+                      response.send(500, err.message);
+                    }
+                  ) //  end of second then
+                } // end of IF(matches)
+              } //  end of function(err, matches)
+          ) //  end of bcrypt
+        } //  end of IF (user)
+      } //  end of function(user)
+    ) //  end of first then
 });  //  End of user destruction
-
-
 
 
 
