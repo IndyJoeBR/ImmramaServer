@@ -1,7 +1,6 @@
 require("dotenv").config(); 
 const express = require("express");
 const sequelize = require("./db");
-
 const app = express();
 
 //const CORSmiddlewares = require("./middleware/CORSMiddleware");       //   DELETE IF NOT REQUIRED, now located in app.use directly
@@ -16,6 +15,7 @@ app.use(express.json());
 
 // Test Route   http://localhost:3000   /immrama/test
 // Heroku: https://immramaserver.herokuapp.com/immrama/test
+// Postman Test: GET, ^^^^^^^^, set to Headers
 app.use('/immrama/test', function(request, response) {
   response.send("This is a test endpoint. It's from the server.")
 });
@@ -30,10 +30,12 @@ app.use('/user', userController);
 
 //Protected Routes
 
-
+//app.use(require('./middleware/ValidateJWTMiddleware'));  // import validate-session middleware, which will check if the incoming request has a token
 //app.use("/character", middlewares.ValidateJWT, controllers.Character);      TURN THIS ON AFTER HEROKU IS WORKING
 app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
+
+
 
 
 

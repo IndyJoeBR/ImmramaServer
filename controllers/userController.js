@@ -9,6 +9,7 @@ const UserModel = sequelize.import("../models/User");
 // **********   REGISTER   **********
 // User Register Controller .../user/register
 // Heroku: https://immramaserver.herokuapp.com/user/register
+// Postman Test: POST, ^^^^^^^^, set to Body, raw, user: username, password, email-address
 userController.post('/register', function(request, response){
 
   let username = request.body.user.username;
@@ -44,6 +45,8 @@ userController.post('/register', function(request, response){
 // **********   LOGIN   **********
 // User Login Controller .../user/login
 // Heroku: https://immramaserver.herokuapp.com//user/login
+// Postman Test: POST, ^^^^^^^^, set to Body, raw, user: username, password;
+//               (can use same data just sent in Register if available)
 userController.post('/login', function(request, response) {
   
   UserModel.findOne( { where: { username: request.body.user.username } } )     
@@ -83,6 +86,7 @@ userController.post('/login', function(request, response) {
 // REQUIRES: username
 // User Info Controller .../user/userinfo
 // Heroku: https://immramaserver.herokuapp.com/user/userinfo/:username
+// Postman Test: GET, ^^^^^^^^, set to Body, none, username in url (no :)
 userController.get('/userinfo/:username', function(request, response) {
   UserModel.findOne({
     where: {username: request.params.username}      // look in URL for username
@@ -106,15 +110,21 @@ userController.get('/userinfo/:username', function(request, response) {
 // REQUIRES: username, password (current/old), password (new)
 // User Change Password Controller .../user/changepassword
 // Heroku: https://immramaserver.herokuapp.com/user/changepassword
+// Postman Test: PUT, ^^^^^^^^, set to Body, raw, user: 
 userController.put('/changepassword', function(request, response) {
-  UserModel.findOne ( { where: {username: request.body.user.username}})
+
+  let username = request.body.user.username;
+  let oldPassword = request.body.user.oldPassword
+  let newPassword = request.body.user.newPassword;
+
+  UserModel.findOne ( { where: {username: username} } )
     .then (
       function(user) {
         if (user) {
-          bcrypt.compare(request.body.user.oldPassword, user.passwordhash,
+          bcrypt.compare(oldPassword, user.passwordhash,
             function (err, matches) {
               if (matches) {
-                user.passwordhash = bcrypt.hashSync(request.body.user.newPassword, 12)
+                user.passwordhash = bcrypt.hashSync(newPassword, 12)
                 user.update(user, {fields: ['passwordhash'] })
                 .then ( () => {
                   response.status(200).send(user);
@@ -140,16 +150,20 @@ userController.put('/changepassword', function(request, response) {
 // User DELETION Controller .../user/smite
 // Heroku: https://immramaserver.herokuapp.com/user/smite
 userController.delete('/smite', function(request, response) {
-  UserModel.findOne( {where: { username: request.body.user.username} } )
+
+  let username = request.body.user.username;
+  let password = request.body.user.password
+
+  UserModel.findOne( {where: { username: username} } )
     .then (
       function(user) {
         if (user) {
           console.log("User to be deleted:", user);
-          bcrypt.compare(request.body.user.password, user.passwordhash,
+          bcrypt.compare(password, user.passwordhash,
             function(err, matches) {
               if(matches) {
                 User.destroy( {
-                  where: { username: request.body.user.username } } ) // destroy
+                  where: { username: username } } ) // destroy
                   .then (
                     function deleteAccountSuccess(data) {
                       response.send("[server] user has been terminated, but the journey remains.")
@@ -171,6 +185,7 @@ userController.delete('/smite', function(request, response) {
 //********************************************************** 
 // User Test Controller .../user/userTest
 // Heroku:  https://immramaserver.herokuapp.com/user/userTest
+// Postman Test: GET, ^^^^^^^^, set to Headers
 userController.get('/userTest', function(request, response){
   response.send("[server] user test went through!")
 }); //  Keep for debug
