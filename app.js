@@ -17,7 +17,7 @@ app.use(express.json());
 // Heroku: https://immramaserver.herokuapp.com/immrama/test
 // Postman Test: GET, ^^^^^^^^, set to Headers
 app.use('/immrama/test', function(request, response) {
-  response.send("This is a test endpoint. It's from the server.")
+  response.send("[server} This is the test endpoint for the Immrama server.")
 });
 // Heroku route: https://immramaserver.herokuapp.com/
 //      this should be the correct URL

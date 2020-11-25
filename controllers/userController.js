@@ -158,7 +158,7 @@ userController.delete('/smite', function(request, response) {
     .then (
       function(user) {
         if (user) {
-          console.log("User to be deleted:", user);
+          console.log("[server] User to be deleted:", user);
           bcrypt.compare(password, user.passwordhash,
             function(err, matches) {
               if(matches) {
