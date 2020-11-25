@@ -109,7 +109,8 @@ userController.get('/userinfo/:username', function(request, response) {
 // REQUIRES: username, password (current/old), password (new)
 // User Change Password Controller .../user/changepassword
 // Heroku: https://immramaserver.herokuapp.com/user/changepassword
-// Postman Test: PUT, ^^^^^^^^, set to Body, raw, user: 
+// Postman Test: PUT, ^^^^^^^^, set to Body, raw, user: username, oldpassword, &
+//                                                          newpassword
 userController.put('/changepassword', function(request, response) {
 
   let username = request.body.user.username;
@@ -151,7 +152,7 @@ userController.put('/changepassword', function(request, response) {
 userController.delete('/smite', function(request, response) {
 
   let username = request.body.user.username;
-  let password = request.body.user.password
+  let password = request.body.user.password;
 
   UserModel.findOne( {where: { username: username} } )
     .then (
