@@ -37,5 +37,4 @@ UserModel.hasMany(ChapterModel);
 ChapterModel.belongsTo(UserModel);
 
 
-
 module.exports = sequelize;

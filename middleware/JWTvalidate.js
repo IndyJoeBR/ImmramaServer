@@ -15,9 +15,9 @@ const ValidateJWTMiddleware = (request, response, next) => {
       jwt.verify(sessionToken, process.env.JWT_SECRET, (err, decoded) => {                   // verify decodes token with secret; if good, decoded is given the payload, else undefined
         if(decoded){                                                                         // if 'decoded' has a value
           UserModel.findOne({where: { id: decoded.id}})
-          .then(user => {                                                                    // findOne looks for a matching id in the users table and passes it
-            request.user = user;                                                             // the callback sets the user value for the request
-            next();                                                                          // and moves the request on to the next stage
+          .then(user => { // findOne looks for a matching id in the users table and passes it
+            request.user = user;  // the callback sets the user value for the request
+            next();               // and moves the request on to the next stage
           },
           function(){                                                                        // if no matching id is found, an error message is thrown.
             response.status(401).send({error: '[server] Not authorized'});

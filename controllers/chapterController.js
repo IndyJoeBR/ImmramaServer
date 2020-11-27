@@ -1,7 +1,7 @@
 const Express = require('express');
 const chapterController = Express.Router();
 const sequelize = require("../db");
-const UserModel = require('../models/Chapter');
+const ChapterModel = sequelize.import('../models/Chapter');
 
 
 //const JourneyModel = require("../models");
@@ -44,11 +44,11 @@ chapterController.get('/chapter/:id', function(request, response) {
 });  //  End of get chapter by id
 
 
-chapterController.put('/chapterUpdate', function(request, response) {
+chapterController.put('/chapterUpdate/:id', function(request, response) {
   response.send("Chapter updated!")
 });  //  End of update chapter
 
-chapterController.delete('/chapterDelete', function(request, response) {
+chapterController.delete('/chapterDelete/:id', function(request, response) {
   response.send("Chapter deleted!")
 });  //  End of chapter deletion
 

@@ -114,7 +114,7 @@ userController.get('/userinfo/:username', function(request, response) {
 userController.put('/changepassword', function(request, response) {
 
   let username = request.body.user.username;
-  let oldPassword = request.body.user.oldPassword
+  let oldPassword = request.body.user.oldPassword;
   let newPassword = request.body.user.newPassword;
 
   UserModel.findOne ( { where: {username: username} } )
@@ -165,10 +165,10 @@ userController.delete('/smite', function(request, response) {
                 User.destroy( {
                   where: { username: username } } ) // destroy
                   .then (
-                    function deleteAccountSuccess(data) {
+                    function deleteUserSuccess(data) {
                       response.send("[server] user has been terminated, but the journey remains.")
                     },
-                    function deleteAccountError(err) {
+                    function deleteUserError(err) {
                       response.send(500, err.message);
                     }
                   ) //  end of second then
