@@ -19,6 +19,7 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyCreate
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', function(request, response) {
+
   let JourneyUsername = request.body.user.username;
   let userId = request.body.user.userId;
   let journeyTitle = request.body.journey.journeyTitle;
@@ -35,15 +36,15 @@ journeyController.post('/journeyCreate', function(request, response) {
     journeyEndDate: journeyEndDate,
     journeyDesc: journeyDesc
   })
-  .then(                                                  // when complete
-    function createJourneySuccess(journey) {              // if it was successful
-      response.json({                                     // return a JSON object
-        journey: journey,                                 // of the entry
+  .then(                                      // when complete
+    function createJourneySuccess(journey) {  // if it was successful
+      response.json({                         // return a JSON object
+        journey: journey,                     // of the entry
         message: "[server] New journey has been started." // and log it
       })
     },
-    function createJourneyError(err) {                    // if not successful
-      response.send(501, err.message);                    // return an error message
+    function createJourneyError(err) {        // if not successful
+      response.send(501, err.message);        // return an error message
     }
   );
 });  //  End of journey creation
@@ -134,6 +135,7 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 
   let journeyId = request.params.id;
   let JourneyUsername = request.user.username;
+  let userId = request.body.user.userId;
   let journeyTitle = request.body.journey.journeyTitle;
   let journeyStartDate = request.body.journey.startDate;
   let journeyEndDate = request.body.journey.endDate;
@@ -141,16 +143,19 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 
   JourneyModel.update( {
     JourneyUsername: JourneyUsername,
+    userId: userId,
     journeyTitle: journeyTitle,
     journeyStartDate: journeyStartDate,
     journeyEndDate: journeyEndDate,
     journeyDesc: journeyDesc
   },
-    {where: {id: journeyId}})
+    {where: {id: journeyId}}
+  )
   .then(                                            // when complete
-    function updateJourneySuccess(updatedJourney) {    // if it was successful
+    function updateJourneySuccess(journey) {    // if it was successful
       response.json({                               // return a JSON object
-        updatedJourney: updatedJourney                      // of the entry
+        journey: journey,                     // of the entry
+        message: "[server] Journey has been updated."
       });
     },
     function updateJourneyError(err) {              // if not successful
