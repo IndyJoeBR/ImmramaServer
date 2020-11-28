@@ -55,10 +55,10 @@ journeyController.post('/journeyCreate', function(request, response) {
 // Postman: GET, ^^^^^^^^^^^^^
 journeyController.get('/journey/all', function(request, response) {
 
+  console.log("*********************************************************");
   console.log("Recovering journeys from all users.");
 
-  JourneyModel
-    .findAll()
+  JourneyModel.findAll()
     .then(
       function findAllSuccess(allJourneys) {
         response.json({
@@ -77,14 +77,14 @@ journeyController.get('/journey/all', function(request, response) {
 // REQUIRES: userId
 // Journey Creation Controller .../journey/:userId
 // Heroku: https://immramaserver.herokuapp.com/journey/:userId
-// Postman: GET, ^^^^^^^^^^^^^, userId in URL
-journeyController.get('/journey/:userId', function(request, response) {
+// Postman: GET, ^^^^^^^^^^^^^, username in URL
+journeyController.get('/journey/:username', function(request, response) {
 
-  let userId = request.params.userId;
+  let username = request.params.username;
 
   JourneyModel
     .findAll({
-      where: {userId: userId}
+      where: {username: username}
     })
     .then(
       function findAllSuccess(allUsersJourneys) {
