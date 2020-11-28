@@ -45,7 +45,6 @@ journeyController.post('/journeyCreate', function(request, response) {
       })
     },
     function createJourneyError(err) {              // if not successful
-      response.send("Clearly... there is a problem");
       response.send(501, err.message);              // return an error message
     }
   );
