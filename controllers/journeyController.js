@@ -23,9 +23,9 @@ journeyController.post('/journeyCreate', function(request, response) {
   console.log("JourneyUsername", JourneyUsername);
   let journeyTitle = request.body.journey.journeyTitle;
   console.log("journeyTitle", journeyTitle);
-  let journeyStartDate = request.body.journey.startDate;
+  let journeyStartDate = request.body.journey.journeyStartDate;
   console.log("journeyStartDate", journeyStartDate);
-  let journeyEndDate = request.body.journey.endDate;
+  let journeyEndDate = request.body.journey.journeyEndDate;
   console.log("journeyEndDate", journeyEndDate);
   let journeyDesc = request.body.journey.journeyDesc;
   console.log("journeyDesc", journeyDesc);
