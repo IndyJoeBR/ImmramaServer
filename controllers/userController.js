@@ -44,7 +44,7 @@ userController.post('/register', function(request, response){
 
 // **********   LOGIN   **********
 // User Login Controller .../user/login
-// Heroku: https://immramaserver.herokuapp.com//user/login
+// Heroku: https://immramaserver.herokuapp.com/user/login
 // Postman Test: POST, ^^^^^^^^, set to Body, raw, user: username, password;
 //               (can use same data just sent in Register if available)
 userController.post('/login', function(request, response) {
@@ -162,7 +162,7 @@ userController.delete('/smite', function(request, response) {
           bcrypt.compare(password, user.passwordhash,
             function(err, matches) {
               if(matches) {
-                User.destroy( {
+                UserModel.destroy( {
                   where: { username: username } } ) // destroy
                   .then (
                     function deleteUserSuccess(data) {
@@ -187,7 +187,7 @@ userController.delete('/smite', function(request, response) {
 // Heroku:  https://immramaserver.herokuapp.com/user/userTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
 userController.get('/userTest', function(request, response){
-  response.send("[server] user test went through!")
+  response.send("[server] User test went through!")
 }); //  Keep for debug
 //***********************************************************
 
