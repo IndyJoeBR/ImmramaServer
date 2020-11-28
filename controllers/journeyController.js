@@ -29,6 +29,7 @@ journeyController.post('/journeyCreate', function(request, response) {
   console.log("journeyEndDate", journeyEndDate);
   let journeyDesc = request.body.journey.journeyDesc;
   console.log("journeyDesc", journeyDesc);
+  console.log("The body:", request.body);
 
   JourneyModel.create({
     JourneyUsername: JourneyUsername,
