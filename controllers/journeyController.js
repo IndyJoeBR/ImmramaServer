@@ -79,6 +79,7 @@ journeyController.get('/journey/all', function(request, response) {
 // Heroku: https://immramaserver.herokuapp.com/journey/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/journey/:username', function(request, response) {
+
   let JourneyUsername = request.params.username
   console.log("The username is:", JourneyUsername);
 
