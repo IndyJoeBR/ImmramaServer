@@ -30,7 +30,7 @@ journeyController.post('/journeyCreate', function(request, response) {
   let journeyDesc = request.body.journey.journeyDesc;
   console.log("journeyDesc", journeyDesc);
 
-  JourneyModel.create( {
+  JourneyModel.create({
     JourneyUsername: JourneyUsername,
     journeyTitle: journeyTitle,
     journeyStartDate: journeyStartDate,
@@ -38,13 +38,14 @@ journeyController.post('/journeyCreate', function(request, response) {
     journeyDesc: journeyDesc
   })
   .then(                                            // when complete
-    function createJourneySuccess(newJourney) {     // if it was successful
+    function createJourneySuccess(journey) {     // if it was successful
       response.json({                               // return a JSON object
-        newJourney: newJourney,                     // of the entry
+        journey: journey,                     // of the entry
         message: "[server] New journey has been started."  // and log it
       })
     },
     function createJourneyError(err) {              // if not successful
+      response.send("Clearly... there is a problem");
       response.send(500, err.message);              // return an error message
     }
   );
