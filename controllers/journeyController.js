@@ -33,9 +33,10 @@ journeyController.post('/journeyCreate', function(request, response) {
     journeyDesc: journeyDesc
   })
   .then(                                            // when complete
-    function createJourneySuccess(newLogEntry) {    // if it was successful
+    function createJourneySuccess(newJourney) {     // if it was successful
       response.json({                               // return a JSON object
-        newJourney: newJourney                      // of the entry
+        newJourney: newJourney,                     // of the entry
+        message: "[server] New journey has been started."  // and log it
       });
     },
     function createJourneyError(err) {              // if not successful
@@ -187,7 +188,7 @@ journeyController.delete('/journeyDelete/:id', function(request, response) {
 // Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
 journeyController.get('/journeyTest', function(request, response){
-  response.send("Journey test went through!")
+  response.send("[server] Journey test went through!")
 });
 //******************************************************************
 

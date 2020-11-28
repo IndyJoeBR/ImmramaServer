@@ -6,7 +6,7 @@ const sequelize = require("../db");
 const UserModel = sequelize.import("../models/User");
 
 
-// **********   REGISTER   **********
+// **********   REGISTER   **********  <=----- FUNCTIONAL -----=>
 // User Register Controller .../user/register
 // Heroku: https://immramaserver.herokuapp.com/user/register
 // Postman Test: POST, ^^^^^^^^, set to Body, raw, user: username, password, email-address
@@ -29,7 +29,7 @@ userController.post('/register', function(request, response){
     //                 .sign (  payload,           signature        {expiration setting}); 
       response.json({
         user: user,
-        message: '[server] new user has been registered',
+        message: '[server] New user has been registered',
         sessionToken: userToken
       })              
     },
@@ -42,7 +42,7 @@ userController.post('/register', function(request, response){
 });  //  End of user registration/creation
 
 
-// **********   LOGIN   **********
+// **********   LOGIN   **********  <=----- FUNCTIONAL -----=>
 // User Login Controller .../user/login
 // Heroku: https://immramaserver.herokuapp.com/user/login
 // Postman Test: POST, ^^^^^^^^, set to Body, raw, user: username, password;
@@ -82,7 +82,7 @@ userController.post('/login', function(request, response) {
 
 
 
-// **********   USER INFO   **********
+// **********   USER INFO   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: username
 // User Info Controller .../user/userinfo
 // Heroku: https://immramaserver.herokuapp.com/user/userinfo/:username
@@ -105,7 +105,7 @@ userController.get('/userinfo/:username', function(request, response) {
 
 
 
-// **********   CHANGE PASSWORD   **********
+// **********   CHANGE PASSWORD   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: username, password (current/old), password (new)
 // User Change Password Controller .../user/changepassword
 // Heroku: https://immramaserver.herokuapp.com/user/changepassword
@@ -145,7 +145,7 @@ userController.put('/changepassword', function(request, response) {
 
 
 
-// **********   DELETE   **********
+// **********   DELETE   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: username, password
 // User DELETION Controller .../user/smite
 // Heroku: https://immramaserver.herokuapp.com/user/smite

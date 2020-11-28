@@ -8,12 +8,6 @@ const ChapterModel = sequelize.import('../models/Chapter');
 
 
 
-// User Test Controller .../chapter/chapterTest
-chapterController.get('/chapterTest', function(request, response){
-  response.send("Chapter test went through!")
-});
-
-
 
 /*  TODO Chapter Routes
       GET/all
@@ -59,7 +53,7 @@ chapterController.delete('/chapterDelete/:id', function(request, response) {
 // Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
 chapterController.get('/chapterTest', function(request, response){
-  response.send("Chapter test went through!")
+  response.send("[server] Chapter test went through!")
 });
 //******************************************************************
 
