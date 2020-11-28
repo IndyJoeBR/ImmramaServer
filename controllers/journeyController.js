@@ -20,15 +20,10 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', function(request, response) {
   let JourneyUsername = request.body.user.username;
-  console.log("JourneyUsername", JourneyUsername);
   let journeyTitle = request.body.journey.journeyTitle;
-  console.log("journeyTitle", journeyTitle);
   let journeyStartDate = request.body.journey.journeyStartDate;
-  console.log("journeyStartDate", journeyStartDate);
   let journeyEndDate = request.body.journey.journeyEndDate;
-  console.log("journeyEndDate", journeyEndDate);
   let journeyDesc = request.body.journey.journeyDesc;
-  console.log("journeyDesc", journeyDesc);
   console.log("The body:", request.body);
 
   JourneyModel.create({
@@ -38,15 +33,15 @@ journeyController.post('/journeyCreate', function(request, response) {
     journeyEndDate: journeyEndDate,
     journeyDesc: journeyDesc
   })
-  .then(                                            // when complete
-    function createJourneySuccess(journey) {     // if it was successful
-      response.json({                               // return a JSON object
-        journey: journey,                     // of the entry
-        message: "[server] New journey has been started."  // and log it
+  .then(                                                  // when complete
+    function createJourneySuccess(journey) {              // if it was successful
+      response.json({                                     // return a JSON object
+        journey: journey,                                 // of the entry
+        message: "[server] New journey has been started." // and log it
       })
     },
-    function createJourneyError(err) {              // if not successful
-      response.send(501, err.message);              // return an error message
+    function createJourneyError(err) {                    // if not successful
+      response.send(501, err.message);                    // return an error message
     }
   );
 });  //  End of journey creation
@@ -60,17 +55,21 @@ journeyController.post('/journeyCreate', function(request, response) {
 // Postman: GET, ^^^^^^^^^^^^^
 journeyController.get('/journey/all', function(request, response) {
 
+  console.log("Recovering journeys from all users.");
+
   JourneyModel
     .findAll()
     .then(
       function findAllSuccess(allJourneys) {
-        response.json(allJourneys)
+        response.json({
+          allJourneys: allJourneys,
+          message: "[server] All journeys recovered."
+        })
       },
       function findAllError(err) {
         response.json(500, err.message)
       }
     );
-  response.send("All journeys retrieved")
 });  //  End of journey get all
 
 
