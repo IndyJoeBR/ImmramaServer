@@ -80,12 +80,10 @@ journeyController.get('/journey/all', function(request, response) {
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/journey/:username', function(request, response) {
 
-  let username = request.params.username;
-  console.log("The username is:", username);
+  console.log("The username is:", request.params.username);
 
-  JourneyModel
-    .findAll({
-      where: {username: username}
+  JourneyModel.findAll({
+    where: {username: request.params.username}
     })
     .then(
       function findAllSuccess(allUsersJourneys) {
