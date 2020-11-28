@@ -60,7 +60,7 @@ journeyController.get('/journey/all', function(request, response) {
 
   JourneyModel.findAll()
     .then(
-      function findAllSuccess(allJourneys) {
+      function findAllSuccess(data) {
         response.json({
           allJourneys: allJourneys,
           message: "[server] All journeys recovered."
@@ -76,18 +76,17 @@ journeyController.get('/journey/all', function(request, response) {
 // **********   GET ALL JOURNEYS BY USER   **********
 // REQUIRES: userId
 // Journey Creation Controller .../journey/:userId
-// Heroku: https://immramaserver.herokuapp.com/journey/:userId
+// Heroku: https://immramaserver.herokuapp.com/journey/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/journey/:username', function(request, response) {
-
   console.log("The username is:", request.params.username);
 
   JourneyModel.findAll({
-    where: {username: request.params.username}
+    where: {JourneyUsername: request.params.username}
     })
     .then(
-      function findAllSuccess(allUsersJourneys) {
-        response.json(allUsersJourneys);
+      function findAllSuccess(data) {
+        response.json(data);
         response.send("[server] All journeys by user recovered.")
       },
       function findAllError(err) {
@@ -111,8 +110,8 @@ journeyController.get('/journey/:id', function(request, response) {
       where: {id: journeyId}
     })
     .then(
-      function findOneSuccess(oneUserJourney) {
-        response.json(oneUserJourney);
+      function findOneSuccess(data) {
+        response.json(data);
       },
       function findOneError(err) {
         response.send(500, err.message);
