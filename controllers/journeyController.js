@@ -89,12 +89,12 @@ journeyController.get('/journey/:username', function(request, response) {
     .then(
       function findAllSuccess(allUsersJourneys) {
         response.json(allUsersJourneys);
+        response.send("[server] All journeys by user recovered.")
       },
       function findAllError(err) {
         response.send(500, err.message);
       }
     );
-  response.send("Journeys by user retrieved")
 });  //  End of get owner journeys
 
 

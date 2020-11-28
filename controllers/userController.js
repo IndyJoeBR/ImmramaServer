@@ -93,7 +93,7 @@ userController.get('/userinfo/:username', function(request, response) {
   .then(
     function findOneSuccess(data) {
       response.json(data);
-      response.send("[server] user data request went through!");
+      response.send("[server] User data request went through!");
     },
     function findOneError(err) {
       response.send(500, err.message);
