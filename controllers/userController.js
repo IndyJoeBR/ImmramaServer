@@ -33,7 +33,6 @@ userController.post('/register', function(request, response){
         sessionToken: userToken
       })              
     },
-
     function createError(err) {
       response.send(500, err.message);
     }

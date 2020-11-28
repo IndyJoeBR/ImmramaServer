@@ -48,7 +48,6 @@ journeyController.post('/journeyCreate', function(request, response) {
       response.send(501, err.message);              // return an error message
     }
   );
-  response.send("Journey created!")
 });  //  End of journey creation
 
 
