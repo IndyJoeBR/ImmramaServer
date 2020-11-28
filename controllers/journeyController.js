@@ -12,8 +12,8 @@ const JourneyModel = sequelize.import('../models/Journey');
       UPDATE/:id - update a journey
       DELETE/:id - delete a journey
 */
-
-// **********   CREATE JOURNEY   **********
+   
+// **********   CREATE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
 // Journey Creation Controller .../journey/journeyCreate
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyCreate
@@ -81,6 +81,7 @@ journeyController.get('/journey/all', function(request, response) {
 journeyController.get('/journey/:username', function(request, response) {
 
   let username = request.params.username;
+  console.log("The username is:", username);
 
   JourneyModel
     .findAll({
