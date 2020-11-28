@@ -19,7 +19,7 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyCreate
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', function(request, response) {
-  let JourneyUsername = request.user.username;
+  let JourneyUsername = request.body.user.username;
   console.log("JourneyUsername", JourneyUsername);
   let journeyTitle = request.body.journey.journeyTitle;
   console.log("journeyTitle", journeyTitle);
