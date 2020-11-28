@@ -20,6 +20,7 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', function(request, response) {
   let JourneyUsername = request.body.user.username;
+  let userId = request.body.user.userId;
   let journeyTitle = request.body.journey.journeyTitle;
   let journeyStartDate = request.body.journey.journeyStartDate;
   let journeyEndDate = request.body.journey.journeyEndDate;
@@ -28,6 +29,7 @@ journeyController.post('/journeyCreate', function(request, response) {
 
   JourneyModel.create({
     JourneyUsername: JourneyUsername,
+    userId: userId,
     journeyTitle: journeyTitle,
     journeyStartDate: journeyStartDate,
     journeyEndDate: journeyEndDate,
@@ -101,19 +103,20 @@ journeyController.get('/journey/:username', function(request, response) {
 
 // **********   GET ONE JOURNEY   **********
 // REQUIRES: journeyId
-// Journey Creation Controller .../journey/:userId
-// Heroku: https://immramaserver.herokuapp.com/journey/:userId
+// Journey Creation Controller .../journey/id
+// Heroku: https://immramaserver.herokuapp.com/journey/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
 journeyController.get('/journey/:id', function(request, response) {
   let journeyId = request.params.id;
+  console.log("Looking for journey id#:", journeyId);
 
-  JourneyModel
-    .findOne({
+  JourneyModel.findOne({
       where: {id: journeyId}
     })
     .then(
       function findOneSuccess(data) {
         response.json(data);
+        response.send("[server] Chosen journey retrieved.")
       },
       function findOneError(err) {
         response.send(500, err.message);
