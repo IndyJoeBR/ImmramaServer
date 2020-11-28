@@ -107,12 +107,11 @@ journeyController.get('/journey/:username', function(request, response) {
 // Heroku: https://immramaserver.herokuapp.com/journey/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
 journeyController.get('/journey/:id', function(request, response) {
-  let journeyId = request.params.id;
-  console.log("Looking for journey id#:", journeyId);
-
-  JourneyModel.findOne({
-      where: {id: journeyId}
-    })
+  console.log("The journey ID#:",request.params.id);
+  //JourneyModel.findOne({
+  //    where: {id: request.params.id}
+  //  })
+  JourneyModel.findByPk(request.params.id)
     .then(
       function findOneSuccess(data) {
         response.json(data);
@@ -122,7 +121,6 @@ journeyController.get('/journey/:id', function(request, response) {
         response.send(500, err.message);
       }
     );
-  response.send("Journey by id went through!")
 });  //  End of get journey by id
 
 

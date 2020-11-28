@@ -88,6 +88,7 @@ userController.post('/login', function(request, response) {
 //   ex: https://immramaserver.herokuapp.com/user/userinfo/herokuUser01
 // Postman Test: GET, ^^^^^^^^, set to Body, none, username in url (no :)
 userController.get('/userinfo/:username', function(request, response) {
+  
   UserModel.findOne({
     where: {username: request.params.username}      // look in URL for username
   })
