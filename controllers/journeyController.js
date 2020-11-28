@@ -37,7 +37,7 @@ journeyController.post('/journeyCreate', function(request, response) {
       response.json({                               // return a JSON object
         newJourney: newJourney,                     // of the entry
         message: "[server] New journey has been started."  // and log it
-      });
+      })
     },
     function createJourneyError(err) {              // if not successful
       response.send(500, err.message);              // return an error message
