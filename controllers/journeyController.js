@@ -20,10 +20,15 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', function(request, response) {
   let JourneyUsername = request.user.username;
+  console.log("JourneyUsername", JourneyUsername);
   let journeyTitle = request.body.journey.journeyTitle;
+  console.log("journeyTitle", journeyTitle);
   let journeyStartDate = request.body.journey.startDate;
+  console.log("journeyStartDate", journeyStartDate);
   let journeyEndDate = request.body.journey.endDate;
+  console.log("journeyEndDate", journeyEndDate);
   let journeyDesc = request.body.journey.journeyDesc;
+  console.log("journeyDesc", journeyDesc);
 
   JourneyModel.create( {
     JourneyUsername: JourneyUsername,
