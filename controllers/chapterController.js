@@ -31,7 +31,7 @@ chapterController.post('/chapterCreate', function(request, response) {
   let chapterShortDesc = request.body.chapter.chapterShortDesc;
   let chapterStory = request.body.chapter.chapterStory;
   let chapterImage = request.body.chapter.chapterImage;
-  let chapterVideo = request.body.chapter.chapterVide;
+  let chapterVideo = request.body.chapter.chapterVideo;
 
   ChapterModel.create({
     chapterTitle: chapterTitle,
@@ -128,17 +128,56 @@ chapterController.get('/getOneChapter/:id', function(request, response) {
 });  //  End of get chapter by id
 
 
-
-
-
 chapterController.put('/chapterUpdate/:id', function(request, response) {
   response.send("Chapter updated!")
 });  //  End of update chapter
 
 
+// **********   UPDATE JOURNEY   ********** 
+// Chapter Update Controller .../chapterUpdate/:id
+// Heroku: https://immramaserver.herokuapp.com/chapter/chapterUpdate/:id
+// Postman: PUT, ^^^^^^^^^^^^^, userId in URL
+chapterController.put('/chapterUpdate/:id', function(request, response) {
+
+  let userId = request.body.user.userId;
+  let journeyId = request.body.journey.journeyId;
+  let chapterTitle = request.body.chapter.chapterTitle;
+  let chapterDate = request.body.chapter.chapterDate;
+  let chapterShortDesc = request.body.chapter.chapterShortDesc;
+  let chapterStory = request.body.chapter.chapterStory;
+  let chapterImage = request.body.chapter.chapterImage;
+  let chapterVideo = request.body.chapter.chapterVideo;
+
+  ChapterModel.update( {
+    chapterTitle: chapterTitle,
+    chapterDate: chapterDate,
+    chapterShortDesc: chapterShortDesc,
+    chapterStory: chapterStory,
+    chapterImage: chapterImage,
+    chapterVideo: chapterVideo,
+    journeyId: journeyId,
+    userId: userId
+  },
+    {where: {id: request.params.chapterId}}
+  )
+  .then(                                            // when complete
+    function updateChapterSuccess(chapter) {    // if it was successful
+      response.json({                               // return a JSON object
+        chapter: chapter,                     // of the entry
+        message: "[server] Chapter has been updated."
+      });
+    },
+    function updateChapterError(err) {              // if not successful
+      response.send(500, err.message);              // return an error message
+    }
+  );
+});  //  End of update chapter
 
 
-// **********   DELETE CHAPTER   ********** 
+
+
+
+// **********   DELETE CHAPTER   **********      <=----- FUNCTIONAL -----=>
 // Journey DELETION Controller .../smiteChapter/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/smiteChapter/:id
 chapterController.delete('/smiteChapter/:id', function(request, response) {
