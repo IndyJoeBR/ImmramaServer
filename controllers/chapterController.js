@@ -90,7 +90,7 @@ chapterController.get('/getAllJourneysChapters/:journeyId', validateSession, fun
     .then(
       function findAllSuccess(data) {
         response.json(data);
-        response.send("[server] All chapters in journey recovered.")
+//        response.send("[server] All chapters in journey recovered.")
       },
       function findAllError(err) {
         response.send(500, err.message);
