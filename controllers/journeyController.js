@@ -130,6 +130,7 @@ journeyController.get('/journey/:id', function(request, response) {
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
 // Journey Update Controller .../journey/:userId
 // Heroku: https://immramaserver.herokuapp.com/journey/:userId
+:userId
 // Postman: PUT, ^^^^^^^^^^^^^, userId in URL
 journeyController.put('/journeyUpdate/:id', function(request, response) {
 
