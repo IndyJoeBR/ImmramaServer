@@ -54,9 +54,9 @@ journeyController.post('/journeyCreate', function(request, response) {
 // **********   GET ALL JOURNEYS   **********
 // REQUIRES: n/a
 // Journey Creation Controller .../journey/all
-// Heroku: https://immramaserver.herokuapp.com/journey/all
+// Heroku: https://immramaserver.herokuapp.com/journey/getAllJourneys
 // Postman: GET, ^^^^^^^^^^^^^
-journeyController.get('/all', function(request, response) {
+journeyController.get('/getAllJourneys', function(request, response) {
 
   console.log("*********************************************************");
   console.log("Recovering journeys from all users.");
@@ -79,9 +79,9 @@ journeyController.get('/all', function(request, response) {
 // **********   GET ALL JOURNEYS BY USER   **********
 // REQUIRES: userId
 // Journey Creation Controller .../journey/:userId
-// Heroku: https://immramaserver.herokuapp.com/journey/:username
+// Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
-journeyController.get('/:username', function(request, response) {
+journeyController.get('/getAllUsersJourneys/:username', function(request, response) {
   console.log("The username is:", request.params.username);
 
   JourneyModel.findAll({
@@ -103,9 +103,9 @@ journeyController.get('/:username', function(request, response) {
 // **********   GET ONE JOURNEY   **********
 // REQUIRES: journeyId
 // Journey Creation Controller .../journey/id
-// Heroku: https://immramaserver.herokuapp.com/journey/:id
+// Heroku: https://immramaserver.herokuapp.com/journey/getOne/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
-journeyController.get('/:id', function(request, response) {
+journeyController.get('/getOneJourney/:id', function(request, response) {
   console.log("The journey ID#:",request.params.id);
   //JourneyModel.findOne({
   //    where: {id: request.params.id}
