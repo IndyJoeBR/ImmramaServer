@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken'); //if you get an error stating something is 
 const User = require('../db').import('../models/User');
 
 const validateSession = (request, response, next) => { 
-  console.log("Starting validation process.");
+  console.log("***** Starting validation process.******");
   if (request.method == 'OPTIONS') {
     next()
   } else {
@@ -15,6 +15,7 @@ const validateSession = (request, response, next) => {
             .then(user => {
                 if (!user) throw 'err';
                 request.user = user;
+                console.log("This is request.user:", request.user);
                 return next();
             })
             .catch(err => {next(err); console.log('this could be where it broke')})
