@@ -155,7 +155,7 @@ chapterController.put('/chapterUpdate/:id', function(request, response) {
     journeyId: journeyId,
     userId: userId
   },
-    {where: {id: request.params.chapterId}}
+    {where: {id: request.params.id}}
   )
   .then(                                            // when complete
     function updateChapterSuccess(chapter) {        // if it was successful
