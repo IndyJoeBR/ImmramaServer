@@ -130,7 +130,7 @@ chapterController.get('/getOneChapter/:id', function(request, response) {
 
 
 
-// **********   UPDATE JOURNEY   ********** 
+// **********   UPDATE JOURNEY   **********       <=----- FUNCTIONAL -----=>
 // Chapter Update Controller .../chapterUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterUpdate/:id
 // Postman: PUT, ^^^^^^^^^^^^^, a lot
