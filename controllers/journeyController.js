@@ -160,7 +160,6 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
       response.send(500, err.message);              // return an error message
     }
   );
-  response.send("Journey update went through!")
 });  //  End of update journey
 
 
