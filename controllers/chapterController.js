@@ -18,16 +18,10 @@ const ChapterModel = sequelize.import('../models/Chapter');
       DELETE/:id
 */
 
-
-chapterController.post('/chapterCreate', function(request, response) {
-  response.send("Chapter creation succeeded!")
-});  //  End of chapter creation
-
-
-// **********   CREATE Chapter   **********        <=----- FUNCTIONAL -----=>
+// **********   CREATE Chapter   **********
 // Journey Creation Controller .../chapter/chapterCreate
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterCreate
-// Postman: POST, ^^^^^^^^^^^^^, user
+// Postman: POST, ^^^^^^^^^^^^^
 chapterController.post('/chapterCreate', function(request, response) {
 
   let userId = request.body.user.userId;
