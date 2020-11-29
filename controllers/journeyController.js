@@ -51,14 +51,10 @@ journeyController.post('/journeyCreate', function(request, response) {
 
 
 // **********   GET ALL JOURNEYS   **********  <=----- FUNCTIONAL -----=>
-// REQUIRES: n/a
 // Journey Creation Controller .../journey/all
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllJourneys
 // Postman: GET, ^^^^^^^^^^^^^
 journeyController.get('/getAllJourneys', function(request, response) {
-
-  console.log("*********************************************************");
-  console.log("Recovering journeys from all users.");
 
   JourneyModel.findAll()
     .then(

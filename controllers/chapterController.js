@@ -18,7 +18,7 @@ const ChapterModel = sequelize.import('../models/Chapter');
       DELETE/:id
 */
 
-// **********   CREATE Chapter   **********
+// **********   CREATE Chapter   **********  <=----- FUNCTIONAL -----=>
 // Journey Creation Controller .../chapter/chapterCreate
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterCreate
 // Postman: POST, ^^^^^^^^^^^^^
@@ -57,8 +57,26 @@ chapterController.post('/chapterCreate', function(request, response) {
 });  //  End of journey creation
 
 
-chapterController.get('/chapter/all', function(request, response) {
-  response.send("All chapters retrieved")
+
+
+// **********   GET ALL Chapters   **********
+// Journey Creation Controller .../chapter/getAllChapters
+// Heroku: https://immramaserver.herokuapp.com/chapter/getAllChapters
+// Postman: GET, ^^^^^^^^^^^^^
+chapterController.get('/getAllChapters', function(request, response) {
+
+  ChapterModel.findAll()
+    .then(
+      function findAllSuccess(allChapters) {
+        response.json({
+          allChapters: allChapters,
+          message: "[server] All chapters recovered."
+        })
+      },
+      function findAllError(err) {
+        response.json(500, err.message)
+      }
+    );
 });  //  End of get all chapters
 
 chapterController.get('/chapter/:journeyId', function(request, response) {
