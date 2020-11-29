@@ -2,6 +2,10 @@ const jwt = require('jsonwebtoken'); //if you get an error stating something is 
 const User = require('../db').import('../models/User');
 
 const validateSession = (request, response, next) => { 
+  console.log("Starting validation process.");
+  if (request.method == 'OPTIONS') {
+    next()
+  } else {
     const token = request.headers.authorization;
     console.log(request.headers)
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
@@ -18,7 +22,7 @@ const validateSession = (request, response, next) => {
           request.errors = err;
           response.status(401).send("This is a bad token")
         }
-    })
+    })}
 };
 
 module.exports = validateSession;

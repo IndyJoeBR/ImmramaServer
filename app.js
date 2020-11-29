@@ -29,7 +29,7 @@ app.use('/user', userController);
 
 
 //Protected Routes (validated at each endpoint)
-//app.use('/journey', journeyController);
+app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
 
 
