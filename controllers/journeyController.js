@@ -135,8 +135,8 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
   let JourneyUsername = request.body.user.username;
   let userId = request.body.user.userId;
   let journeyTitle = request.body.journey.journeyTitle;
-  let journeyStartDate = request.body.journey.startDate;
-  let journeyEndDate = request.body.journey.endDate;
+  let journeyStartDate = request.body.journey.journeyStartDate;
+  let journeyEndDate = request.body.journey.journeyEndDate;
   let journeyDesc = request.body.journey.journeyDesc;
 
   JourneyModel.update( {
