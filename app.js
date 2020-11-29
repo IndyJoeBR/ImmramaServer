@@ -9,7 +9,7 @@ const userController = require('./controllers/userController');
 const journeyController = require('./controllers/journeyController');
 const chapterController = require('./controllers/chapterController');
 
-app.use( require("./middleware/CORSMiddleware") );
+app.use( require("./middleware/headers") );
 app.use( express.json() );
 
 

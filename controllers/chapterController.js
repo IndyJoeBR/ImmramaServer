@@ -2,7 +2,7 @@ const Express = require('express');
 const chapterController = Express.Router();
 const sequelize = require("../db");
 const ChapterModel = sequelize.import('../models/Chapter');
-const validateSession = require('../middleware/JWTvalidate');
+const validateSession = require('../middleware/validateSession');
 
 
 /*  TODO Chapter Routes

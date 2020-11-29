@@ -2,7 +2,7 @@ const Express = require('express');
 const journeyController = Express.Router();
 const sequelize = require("../db");
 const JourneyModel = sequelize.import('../models/Journey');
-const validateSession = require('../middleware/JWTvalidate');
+const validateSession = require('../middleware/validateSession');
 
 /*  TODO Journey Routes
       GET/all - get all journeys
