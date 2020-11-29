@@ -179,11 +179,11 @@ journeyController.delete('/smiteJourney/:id', validateSession, function(request,
 // Journey Test Controller .../journey/journeyTest
 // Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
-journeyController.get('/journeyTest', validateSession, function(request, response){
+journeyController.get('/journeyTest', function(request, response){
   response.send("[server] Journey test went through!")
 });
 //******************************************************************
 
-
+//************************************************************* */
 
 module.exports = journeyController;
