@@ -2,7 +2,7 @@ const Express = require('express');
 const journeyController = Express.Router();
 const sequelize = require("../db");
 const JourneyModel = sequelize.import('../models/Journey');
-//const JourneyModel = require("../models");
+const validateSession = require('../middleware/JWTvalidate');
 
 /*  TODO Journey Routes
       GET/all - get all journeys
@@ -18,7 +18,7 @@ const JourneyModel = sequelize.import('../models/Journey');
 // Journey Creation Controller .../journey/journeyCreate
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyCreate
 // Postman: POST, ^^^^^^^^^^^^^, user
-journeyController.post('/journeyCreate', function(request, response) {
+journeyController.post('/journeyCreate', validateSession, function(request, response) {
 
   let JourneyUsername = request.body.user.username;
   let userId = request.body.user.userId;
@@ -54,7 +54,7 @@ journeyController.post('/journeyCreate', function(request, response) {
 // Journey Creation Controller .../journey/all
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllJourneys
 // Postman: GET, ^^^^^^^^^^^^^
-journeyController.get('/getAllJourneys', function(request, response) {
+journeyController.get('/getAllJourneys', validateSession, function(request, response) {
 
   JourneyModel.findAll()
     .then(
@@ -75,7 +75,7 @@ journeyController.get('/getAllJourneys', function(request, response) {
 // Journey Creation Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
-journeyController.get('/getAllUsersJourneys/:username', function(request, response) {
+journeyController.get('/getAllUsersJourneys/:username', validateSession, function(request, response) {
 
   JourneyModel.findAll({
     where: {JourneyUsername: request.params.username}
@@ -97,7 +97,7 @@ journeyController.get('/getAllUsersJourneys/:username', function(request, respon
 // Journey Creation Controller .../getOneJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/getOneJourney/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
-journeyController.get('/getOneJourney/:id', function(request, response) {
+journeyController.get('/getOneJourney/:id', validateSession, function(request, response) {
 
   JourneyModel.findByPk(request.params.id)
     .then(
@@ -118,7 +118,7 @@ journeyController.get('/getOneJourney/:id', function(request, response) {
 // Journey Update Controller .../journeyUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyUpdate/:id
 // Postman: PUT, ^^^^^^^^^^^^^, userId in URL
-journeyController.put('/journeyUpdate/:id', function(request, response) {
+journeyController.put('/journeyUpdate/:id', validateSession, function(request, response) {
 
   let journeyId = request.params.id;
   let JourneyUsername = request.body.user.username;
@@ -156,7 +156,7 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 // **********   DELETE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // Journey DELETION Controller .../smiteJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/smiteJourney/:id
-journeyController.delete('/smiteJourney/:id', function(request, response) {
+journeyController.delete('/smiteJourney/:id', validateSession, function(request, response) {
 
   JourneyModel
     .destroy({
@@ -179,7 +179,7 @@ journeyController.delete('/smiteJourney/:id', function(request, response) {
 // Journey Test Controller .../journey/journeyTest
 // Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
-journeyController.get('/journeyTest', function(request, response){
+journeyController.get('/journeyTest', validateSession, function(request, response){
   response.send("[server] Journey test went through!")
 });
 //******************************************************************

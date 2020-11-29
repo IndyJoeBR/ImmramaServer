@@ -1,3 +1,32 @@
+const jwt = require('jsonwebtoken'); //if you get an error stating something is being redeclared, switch it from a const to a var or let
+const User = require('../db').import('../models/user');
+
+const validateSession = (request, response, next) => { 
+    const token = request.headers.authorization;
+    console.log(request.headers)
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+        console.log(`INVALID TOKEN: ${decodedToken}`)
+        if (!err && decodedToken) {
+            User.findOne({ where: {id: decodedToken.id}})
+            .then(user => {
+                if (!user) throw 'err';
+                request.user = user;
+                return next();
+            })
+            .catch(err => {next(err); console.log('this could be where it broke')})
+        } else {
+          request.errors = err;
+          response.status(401).send("This is a bad token")
+        }
+    })
+};
+
+module.exports = validateSession;
+
+
+
+
+/*
 const jwt = require('jsonwebtoken');
 const { UserModel } = require('../models'); // pulls UserModel directly with sequelize importing it
 //let sequelizeInstance = require('../database');              // ****  no longer needed, previously require for import statement (#4)
@@ -31,3 +60,4 @@ const ValidateJWTMiddleware = (request, response, next) => {
 };
 
 module.exports = ValidateJWTMiddleware;
+*/

@@ -2,11 +2,7 @@ const Express = require('express');
 const chapterController = Express.Router();
 const sequelize = require("../db");
 const ChapterModel = sequelize.import('../models/Chapter');
-
-
-//const JourneyModel = require("../models");
-
-
+const validateSession = require('../middleware/JWTvalidate');
 
 
 /*  TODO Chapter Routes
@@ -22,7 +18,7 @@ const ChapterModel = sequelize.import('../models/Chapter');
 // Journey Creation Controller .../chapter/chapterCreate
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterCreate
 // Postman: POST, ^^^^^^^^^^^^^
-chapterController.post('/chapterCreate', function(request, response) {
+chapterController.post('/chapterCreate', validateSession, function(request, response) {
 
   let userId = request.body.user.userId;
   let journeyId = request.body.journey.journeyId;
@@ -63,7 +59,7 @@ chapterController.post('/chapterCreate', function(request, response) {
 // Journey Creation Controller .../chapter/getAllChapters
 // Heroku: https://immramaserver.herokuapp.com/chapter/getAllChapters
 // Postman: GET, ^^^^^^^^^^^^^
-chapterController.get('/getAllChapters', function(request, response) {
+chapterController.get('/getAllChapters', validateSession, function(request, response) {
 
   ChapterModel.findAll()
     .then(
@@ -81,16 +77,12 @@ chapterController.get('/getAllChapters', function(request, response) {
 
 
 
-chapterController.get('/chapter/:journeyId', function(request, response) {
-  response.send("Chapters for journey retrieved")
-});  //  End of get all chapters by journey id
-
 
 // **********   GET ALL CHAPTERS IN JOURNEY   **********<=----- FUNCTIONAL -----=>
 // Get all chapters Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/chapter/getAllJourneysChapters/:journeyId
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
-chapterController.get('/getAllJourneysChapters/:journeyId', function(request, response) {
+chapterController.get('/getAllJourneysChapters/:journeyId', validateSession, function(request, response) {
 
   ChapterModel.findAll({
     where: {journeyId: request.params.journeyId}
@@ -113,7 +105,7 @@ chapterController.get('/getAllJourneysChapters/:journeyId', function(request, re
 // Get One Chapter Controller .../getOneChapter/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/getOneChapter/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
-chapterController.get('/getOneChapter/:id', function(request, response) {
+chapterController.get('/getOneChapter/:id', validateSession, function(request, response) {
 
   ChapterModel.findByPk(request.params.id)
     .then(
@@ -134,7 +126,7 @@ chapterController.get('/getOneChapter/:id', function(request, response) {
 // Chapter Update Controller .../chapterUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterUpdate/:id
 // Postman: PUT, ^^^^^^^^^^^^^, a lot
-chapterController.put('/chapterUpdate/:id', function(request, response) {
+chapterController.put('/chapterUpdate/:id', validateSession, function(request, response) {
 
   let userId = request.body.user.userId;
   let journeyId = request.body.journey.journeyId;
@@ -176,7 +168,7 @@ chapterController.put('/chapterUpdate/:id', function(request, response) {
 // **********   DELETE CHAPTER   **********      <=----- FUNCTIONAL -----=>
 // Journey DELETION Controller .../smiteChapter/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/smiteChapter/:id
-chapterController.delete('/smiteChapter/:id', function(request, response) {
+chapterController.delete('/smiteChapter/:id', validateSession, function(request, response) {
 
   ChapterModel
     .destroy({
@@ -199,7 +191,7 @@ chapterController.delete('/smiteChapter/:id', function(request, response) {
 // Chapter Test Controller .../journey/journeyTest
 // Heroku:  https://immramaserver.herokuapp.com/journey/journeyTest
 // Postman Test: GET, ^^^^^^^^, set to Headers
-chapterController.get('/chapterTest', function(request, response){
+chapterController.get('/chapterTest', validateSession, function(request, response){
   response.send("[server] Chapter test went through!")
 });
 //******************************************************************

@@ -28,10 +28,7 @@ app.use('/immrama/test', function(request, response) {
 app.use('/user', userController);
 
 
-//Protected Routes
-
-//app.use(require('./middleware/ValidateJWTMiddleware'));  // import validate-session middleware, which will check if the incoming request has a token
-//app.use("/character", middlewares.ValidateJWT, controllers.Character);      TURN THIS ON AFTER HEROKU IS WORKING
+//Protected Routes (validated at each endpoint)
 app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
 
