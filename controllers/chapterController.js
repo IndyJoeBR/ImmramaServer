@@ -128,15 +128,12 @@ chapterController.get('/getOneChapter/:id', function(request, response) {
 });  //  End of get chapter by id
 
 
-chapterController.put('/chapterUpdate/:id', function(request, response) {
-  response.send("Chapter updated!")
-});  //  End of update chapter
 
 
 // **********   UPDATE JOURNEY   ********** 
 // Chapter Update Controller .../chapterUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/chapterUpdate/:id
-// Postman: PUT, ^^^^^^^^^^^^^, userId in URL
+// Postman: PUT, ^^^^^^^^^^^^^, a lot
 chapterController.put('/chapterUpdate/:id', function(request, response) {
 
   let userId = request.body.user.userId;
@@ -161,9 +158,9 @@ chapterController.put('/chapterUpdate/:id', function(request, response) {
     {where: {id: request.params.chapterId}}
   )
   .then(                                            // when complete
-    function updateChapterSuccess(chapter) {    // if it was successful
+    function updateChapterSuccess(chapter) {        // if it was successful
       response.json({                               // return a JSON object
-        chapter: chapter,                     // of the entry
+        chapter: chapter,                           // of the entry
         message: "[server] Chapter has been updated."
       });
     },
@@ -172,7 +169,6 @@ chapterController.put('/chapterUpdate/:id', function(request, response) {
     }
   );
 });  //  End of update chapter
-
 
 
 
