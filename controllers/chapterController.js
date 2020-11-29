@@ -92,7 +92,7 @@ chapterController.get('/chapter/:journeyId', function(request, response) {
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 chapterController.get('/getAllJourneysChapters/:journeyId', function(request, response) {
 
-  JourneyModel.findAll({
+  ChapterModel.findAll({
     where: {journeyId: request.params.journeyId}
     })
     .then(
