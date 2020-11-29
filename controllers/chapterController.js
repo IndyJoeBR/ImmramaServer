@@ -86,7 +86,7 @@ chapterController.get('/chapter/:journeyId', function(request, response) {
 });  //  End of get all chapters by journey id
 
 
-// **********   GET ALL CHAPTERS IN JOURNEY   **********
+// **********   GET ALL CHAPTERS IN JOURNEY   **********<=----- FUNCTIONAL -----=>
 // Get all chapters Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/chapter/getAllJourneysChapters/:journeyId
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
@@ -109,8 +109,22 @@ chapterController.get('/getAllJourneysChapters/:journeyId', function(request, re
 
 
 
-chapterController.get('/chapter/:id', function(request, response) {
-  response.send("Chapter retrieved by id!")
+// **********   GET ONE CHAPTER   **********
+// Get One Chapter Controller .../getOneChapter/:id
+// Heroku: https://immramaserver.herokuapp.com/chapter/getOneChapter/:id
+// Postman: GET, ^^^^^^^^^^^^^, userId in URL
+chapterController.get('/getOneChapter/:id', function(request, response) {
+
+  ChapterModel.findByPk(request.params.id)
+    .then(
+      function findOneSuccess(data) {
+        response.json(data);
+        response.send("[server] Chosen chapter retrieved.")
+      },
+      function findOneError(err) {
+        response.send(500, err.message);
+      }
+    );
 });  //  End of get chapter by id
 
 
