@@ -78,7 +78,7 @@ journeyController.get('/getAllJourneys', function(request, response) {
 
 // **********   GET ALL JOURNEYS BY USER   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: userId
-// Journey Creation Controller .../journey/:username
+// Journey Creation Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/getAllUsersJourneys/:username', function(request, response) {
@@ -102,7 +102,7 @@ journeyController.get('/getAllUsersJourneys/:username', function(request, respon
 
 // **********   GET ONE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // REQUIRES: journeyId
-// Journey Creation Controller .../journey/id
+// Journey Creation Controller .../getOneJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/getOneJourney/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
 journeyController.get('/getOneJourney/:id', function(request, response) {
@@ -126,7 +126,7 @@ journeyController.get('/getOneJourney/:id', function(request, response) {
 
 // **********   UPDATE JOURNEY   **********
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
-// Journey Update Controller .../journey/:userId
+// Journey Update Controller .../journeyUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyUpdate/:id
 // Postman: PUT, ^^^^^^^^^^^^^, userId in URL
 journeyController.put('/journeyUpdate/:id', function(request, response) {
