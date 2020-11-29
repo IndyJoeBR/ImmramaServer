@@ -26,7 +26,6 @@ journeyController.post('/journeyCreate', function(request, response) {
   let journeyStartDate = request.body.journey.journeyStartDate;
   let journeyEndDate = request.body.journey.journeyEndDate;
   let journeyDesc = request.body.journey.journeyDesc;
-  console.log("The body:", request.body);
 
   JourneyModel.create({
     JourneyUsername: JourneyUsername,
@@ -124,7 +123,7 @@ journeyController.get('/getOneJourney/:id', function(request, response) {
 
 
 
-// **********   UPDATE JOURNEY   **********
+// **********   UPDATE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
 // Journey Update Controller .../journeyUpdate/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/journeyUpdate/:id
