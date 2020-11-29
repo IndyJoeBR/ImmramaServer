@@ -109,7 +109,7 @@ chapterController.get('/getAllJourneysChapters/:journeyId', function(request, re
 
 
 
-// **********   GET ONE CHAPTER   **********
+// **********   GET ONE CHAPTER   **********     <=----- FUNCTIONAL -----=>
 // Get One Chapter Controller .../getOneChapter/:id
 // Heroku: https://immramaserver.herokuapp.com/chapter/getOneChapter/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
@@ -138,9 +138,25 @@ chapterController.put('/chapterUpdate/:id', function(request, response) {
 
 
 
-chapterController.delete('/chapterDelete/:id', function(request, response) {
-  response.send("Chapter deleted!")
+// **********   DELETE CHAPTER   ********** 
+// Journey DELETION Controller .../smiteChapter/:id
+// Heroku: https://immramaserver.herokuapp.com/chapter/smiteChapter/:id
+chapterController.delete('/smiteChapter/:id', function(request, response) {
+
+  ChapterModel
+    .destroy({
+      where: { id: request.params.id } 
+    })
+    .then(
+      function deleteChapterSuccess(data){
+        response.send('[server] Chapter has been deleted');
+      },
+      function deleteChapterError(err){
+        response.send(500, err.message);
+      }
+    );
 });  //  End of chapter deletion
+
 
 
 

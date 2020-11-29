@@ -94,15 +94,11 @@ journeyController.get('/getAllUsersJourneys/:username', function(request, respon
 
 
 // **********   GET ONE JOURNEY   **********        <=----- FUNCTIONAL -----=>
-// REQUIRES: journeyId
 // Journey Creation Controller .../getOneJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/getOneJourney/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
 journeyController.get('/getOneJourney/:id', function(request, response) {
-  console.log("The journey ID#:",request.params.id);
-  //JourneyModel.findOne({
-  //    where: {id: request.params.id}
-  //  })
+
   JourneyModel.findByPk(request.params.id)
     .then(
       function findOneSuccess(data) {
@@ -158,15 +154,13 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 
 
 // **********   DELETE JOURNEY   **********        <=----- FUNCTIONAL -----=>
-// REQUIRES: id (journey id), userId (owner's id)
 // Journey DELETION Controller .../smiteJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/smiteJourney/:id
 journeyController.delete('/smiteJourney/:id', function(request, response) {
-  let journeyID = request.params.id;
 
   JourneyModel
     .destroy({
-      where: { id: journeyID } 
+      where: { id: request.params.id } 
     })
     .then(
       function deleteJourneySuccess(data){
