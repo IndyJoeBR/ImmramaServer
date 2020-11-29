@@ -56,7 +56,7 @@ journeyController.post('/journeyCreate', function(request, response) {
 // Journey Creation Controller .../journey/all
 // Heroku: https://immramaserver.herokuapp.com/journey/all
 // Postman: GET, ^^^^^^^^^^^^^
-journeyController.get('/journey/all', function(request, response) {
+journeyController.get('/all', function(request, response) {
 
   console.log("*********************************************************");
   console.log("Recovering journeys from all users.");
@@ -81,13 +81,11 @@ journeyController.get('/journey/all', function(request, response) {
 // Journey Creation Controller .../journey/:userId
 // Heroku: https://immramaserver.herokuapp.com/journey/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
-journeyController.get('/journey/:username', function(request, response) {
-
-  let JourneyUsername = request.params.username
-  console.log("The username is:", JourneyUsername);
+journeyController.get('/:username', function(request, response) {
+  console.log("The username is:", request.params.username);
 
   JourneyModel.findAll({
-    where: {JourneyUsername: JourneyUsername}
+    where: {JourneyUsername: request.params.username}
     })
     .then(
       function findAllSuccess(data) {
@@ -107,7 +105,7 @@ journeyController.get('/journey/:username', function(request, response) {
 // Journey Creation Controller .../journey/id
 // Heroku: https://immramaserver.herokuapp.com/journey/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
-journeyController.get('/journey/:id', function(request, response) {
+journeyController.get('/:id', function(request, response) {
   console.log("The journey ID#:",request.params.id);
   //JourneyModel.findOne({
   //    where: {id: request.params.id}
@@ -130,7 +128,6 @@ journeyController.get('/journey/:id', function(request, response) {
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
 // Journey Update Controller .../journey/:userId
 // Heroku: https://immramaserver.herokuapp.com/journey/:userId
-:userId
 // Postman: PUT, ^^^^^^^^^^^^^, userId in URL
 journeyController.put('/journeyUpdate/:id', function(request, response) {
 
