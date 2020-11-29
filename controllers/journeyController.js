@@ -63,7 +63,7 @@ journeyController.get('/getAllJourneys', function(request, response) {
 
   JourneyModel.findAll()
     .then(
-      function findAllSuccess(data) {
+      function findAllSuccess(allJourneys) {
         response.json({
           allJourneys: allJourneys,
           message: "[server] All journeys recovered."
@@ -76,9 +76,9 @@ journeyController.get('/getAllJourneys', function(request, response) {
 });  //  End of journey get all
 
 
-// **********   GET ALL JOURNEYS BY USER   **********
+// **********   GET ALL JOURNEYS BY USER   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: userId
-// Journey Creation Controller .../journey/:userId
+// Journey Creation Controller .../journey/:username
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/getAllUsersJourneys/:username', function(request, response) {
@@ -100,10 +100,10 @@ journeyController.get('/getAllUsersJourneys/:username', function(request, respon
 
 
 
-// **********   GET ONE JOURNEY   **********
+// **********   GET ONE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // REQUIRES: journeyId
 // Journey Creation Controller .../journey/id
-// Heroku: https://immramaserver.herokuapp.com/journey/getOne/:id
+// Heroku: https://immramaserver.herokuapp.com/journey/getOneJourney/:id
 // Postman: GET, ^^^^^^^^^^^^^, userId in URL
 journeyController.get('/getOneJourney/:id', function(request, response) {
   console.log("The journey ID#:",request.params.id);
@@ -127,7 +127,7 @@ journeyController.get('/getOneJourney/:id', function(request, response) {
 // **********   UPDATE JOURNEY   **********
 // REQUIRES: JourneyUsername, journeyTitle, journeyStartDate, journeyEndDate, journeyDesc
 // Journey Update Controller .../journey/:userId
-// Heroku: https://immramaserver.herokuapp.com/journey/:userId
+// Heroku: https://immramaserver.herokuapp.com/journey/journeyUpdate/:id
 // Postman: PUT, ^^^^^^^^^^^^^, userId in URL
 journeyController.put('/journeyUpdate/:id', function(request, response) {
 
@@ -167,16 +167,14 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 
 // **********   DELETE JOURNEY   **********
 // REQUIRES: id (journey id), userId (owner's id)
-// Journey DELETION Controller .../journey/journeyDelete/:id
-// Heroku: https://immramaserver.herokuapp.com/user/smite
-// Postman: DELETE, ^^^^^^^^^^^^^, user
-journeyController.delete('/journeyDelete/:id', function(request, response) {
+// Journey DELETION Controller .../smiteJourney/:id
+// Heroku: https://immramaserver.herokuapp.com/journey/smiteJourney/:id
+journeyController.delete('/smiteJourney/:id', function(request, response) {
   let journeyID = request.params.id;
-  let ownerID = request.user.id;
 
   JourneyModel
     .destroy({
-      where: { id: journeyID, userId: ownerID } 
+      where: { id: journeyID } 
     })
     .then(
       function deleteJourneySuccess(data){
