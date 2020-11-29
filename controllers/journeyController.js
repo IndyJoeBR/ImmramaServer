@@ -51,7 +51,7 @@ journeyController.post('/journeyCreate', function(request, response) {
 
 
 
-// **********   GET ALL JOURNEYS   **********
+// **********   GET ALL JOURNEYS   **********  <=----- FUNCTIONAL -----=>
 // REQUIRES: n/a
 // Journey Creation Controller .../journey/all
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllJourneys
@@ -165,7 +165,7 @@ journeyController.put('/journeyUpdate/:id', function(request, response) {
 
 
 
-// **********   DELETE JOURNEY   **********
+// **********   DELETE JOURNEY   **********        <=----- FUNCTIONAL -----=>
 // REQUIRES: id (journey id), userId (owner's id)
 // Journey DELETION Controller .../smiteJourney/:id
 // Heroku: https://immramaserver.herokuapp.com/journey/smiteJourney/:id
