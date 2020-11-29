@@ -10,7 +10,7 @@ const journeyController = require('./controllers/journeyController');
 const chapterController = require('./controllers/chapterController');
 
 app.use( require("./middleware/CORSMiddleware") );
-app.use(express.json());
+app.use( express.json() );
 
 
 // Test Route   http://localhost:3000   /immrama/test
@@ -29,7 +29,7 @@ app.use('/user', userController);
 
 
 //Protected Routes (validated at each endpoint)
-app.use('/journey', journeyController);
+//app.use('/journey', journeyController);
 app.use('/chapter', chapterController);
 
 

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'); //if you get an error stating something is being redeclared, switch it from a const to a var or let
-const User = require('../db').import('../models/user');
+const User = require('../db').import('../models/User');
 
 const validateSession = (request, response, next) => { 
     const token = request.headers.authorization;
