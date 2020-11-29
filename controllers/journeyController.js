@@ -72,12 +72,10 @@ journeyController.get('/getAllJourneys', function(request, response) {
 
 
 // **********   GET ALL JOURNEYS BY USER   **********  <=----- FUNCTIONAL -----=>
-// REQUIRES: userId
 // Journey Creation Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/getAllUsersJourneys/:username', function(request, response) {
-  console.log("The username is:", request.params.username);
 
   JourneyModel.findAll({
     where: {JourneyUsername: request.params.username}

@@ -59,7 +59,7 @@ chapterController.post('/chapterCreate', function(request, response) {
 
 
 
-// **********   GET ALL Chapters   **********
+// **********   GET ALL Chapters   **********  <=----- FUNCTIONAL -----=>
 // Journey Creation Controller .../chapter/getAllChapters
 // Heroku: https://immramaserver.herokuapp.com/chapter/getAllChapters
 // Postman: GET, ^^^^^^^^^^^^^
@@ -79,9 +79,34 @@ chapterController.get('/getAllChapters', function(request, response) {
     );
 });  //  End of get all chapters
 
+
+
 chapterController.get('/chapter/:journeyId', function(request, response) {
   response.send("Chapters for journey retrieved")
 });  //  End of get all chapters by journey id
+
+
+// **********   GET ALL CHAPTERS IN JOURNEY   **********
+// Get all chapters Controller .../getAllUsersJourneys/:username
+// Heroku: https://immramaserver.herokuapp.com/chapter/getAllJourneysChapters/:journeyId
+// Postman: GET, ^^^^^^^^^^^^^, username in URL
+chapterController.get('/getAllJourneysChapters/:journeyId', function(request, response) {
+
+  JourneyModel.findAll({
+    where: {journeyId: request.params.journeyId}
+    })
+    .then(
+      function findAllSuccess(data) {
+        response.json(data);
+        response.send("[server] All chapters in journey recovered.")
+      },
+      function findAllError(err) {
+        response.send(500, err.message);
+      }
+    );
+});  //  End of get owner journeys
+
+
 
 
 chapterController.get('/chapter/:id', function(request, response) {
@@ -89,9 +114,15 @@ chapterController.get('/chapter/:id', function(request, response) {
 });  //  End of get chapter by id
 
 
+
+
+
 chapterController.put('/chapterUpdate/:id', function(request, response) {
   response.send("Chapter updated!")
 });  //  End of update chapter
+
+
+
 
 chapterController.delete('/chapterDelete/:id', function(request, response) {
   response.send("Chapter deleted!")
