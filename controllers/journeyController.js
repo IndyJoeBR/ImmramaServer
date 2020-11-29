@@ -132,7 +132,7 @@ journeyController.get('/getOneJourney/:id', function(request, response) {
 journeyController.put('/journeyUpdate/:id', function(request, response) {
 
   let journeyId = request.params.id;
-  let JourneyUsername = request.user.username;
+  let JourneyUsername = request.body.user.username;
   let userId = request.body.user.userId;
   let journeyTitle = request.body.journey.journeyTitle;
   let journeyStartDate = request.body.journey.startDate;
