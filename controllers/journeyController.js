@@ -20,8 +20,8 @@ const validateSession = require('../middleware/validateSession');
 // Postman: POST, ^^^^^^^^^^^^^, user
 journeyController.post('/journeyCreate', validateSession, function(request, response) {
 
-  let JourneyUsername = request.body.user.username;
-  let userId = request.body.user.userId;
+  let JourneyUsername = request.user.username;  // from validateSession
+  let userId = request.user.id;                 // from validateSession
   let journeyTitle = request.body.journey.journeyTitle;
   let journeyStartDate = request.body.journey.journeyStartDate;
   let journeyEndDate = request.body.journey.journeyEndDate;
