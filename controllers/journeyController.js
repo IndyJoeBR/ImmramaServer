@@ -73,7 +73,7 @@ journeyController.get('/getAllJourneys', function(request, response) {
 
 // **********   GET ALL JOURNEYS BY USER   **********  <=----- FUNCTIONAL -----=>
 // Journey Creation Controller .../getAllUsersJourneys/:username
-// Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
+// Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 journeyController.get('/getAllUsersJourneys', validateSession, function(request, response) {
 

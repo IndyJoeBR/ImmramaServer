@@ -4,7 +4,7 @@ const User = require('../db').import('../models/User');
 const validateSession = (request, response, next) => { 
   console.log("***** Starting validation process.******");
   if (request.method == 'OPTIONS') {
-    next()
+    return next()
   } else {
     const token = request.headers.authorization;
     console.log(request.headers)
