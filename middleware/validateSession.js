@@ -6,7 +6,7 @@ const validateSession = (request, response, next) => {
   if (request.method == 'OPTIONS') {
     return next()
   } else {
-    const token = request.headers.authorization;
+    const token = request.headers.Authorization;
     console.log(request.headers)
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
         console.log(`INVALID TOKEN: ${decodedToken}`)
