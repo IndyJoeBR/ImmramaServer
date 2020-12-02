@@ -75,7 +75,7 @@ journeyController.get('/getAllJourneys', function(request, response) {
 // Journey Creation Controller .../getAllUsersJourneys/:username
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllUsersJourneys/:username
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
-journeyController.get('/getAllUsersJourneys/:username', validateSession, function(request, response) {
+journeyController.get('/getAllUsersJourneys', validateSession, function(request, response) {
 
   JourneyModel.findAll({
 //    where: {JourneyUsername: request.params.username}
