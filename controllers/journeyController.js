@@ -78,7 +78,8 @@ journeyController.get('/getAllJourneys', function(request, response) {
 journeyController.get('/getAllUsersJourneys/:username', validateSession, function(request, response) {
 
   JourneyModel.findAll({
-    where: {JourneyUsername: request.params.username}
+//    where: {JourneyUsername: request.params.username}
+      where: {JourneyUsername: request.user.username}
     })
     .then(
       function findAllSuccess(data) {
