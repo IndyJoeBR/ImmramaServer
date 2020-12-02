@@ -54,7 +54,7 @@ journeyController.post('/journeyCreate', validateSession, function(request, resp
 // Journey Creation Controller .../journey/all
 // Heroku: https://immramaserver.herokuapp.com/journey/getAllJourneys
 // Postman: GET, ^^^^^^^^^^^^^
-journeyController.get('/getAllJourneys', validateSession, function(request, response) {
+journeyController.get('/getAllJourneys', function(request, response) {
 
   JourneyModel.findAll()
     .then(

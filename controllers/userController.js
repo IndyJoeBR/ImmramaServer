@@ -48,13 +48,16 @@ userController.post('/register', function(request, response){
 //               (can use same data just sent in Register if available)
 userController.post('/login', function(request, response) {
   
-  UserModel.findOne( { where: { username: request.body.user.username } } )     
+  let username = request.body.user.username;
+  let password = request.body.user.password;
+  console.log("Tried to loging using:", username, password);
+
+  UserModel.findOne( { where: { username: username } } )     
   .then(
     function(retrievedUserData) {
       if(retrievedUserData) {
-        bcrypt.compare(
-          request.body.user.password,
-          retrievedUserData.passwordhash,
+        console.log("Retrieved user data");
+        bcrypt.compare(password, retrievedUserData.passwordhash,
           function (err, matches) { 
             console.log('[server] the user credentials match:', matches);
             if (matches) {
