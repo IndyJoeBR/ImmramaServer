@@ -57,13 +57,11 @@ journeyController.post('/journeyCreate', validateSession, function(request, resp
 journeyController.get('/getAllJourneys', function(request, response) {
 
   JourneyModel.findAll()
-    .then(
-      function findAllSuccess(allJourneys) {
-        response.json({
-          allJourneys: allJourneys,
-          message: "[server] All journeys recovered."
-        })
-      },
+  .then(
+    function findAllSuccess(data) {
+      response.json(data);
+      response.send("[server] All journeys recovered.")
+    },
       function findAllError(err) {
         response.json(500, err.message)
       }
@@ -78,7 +76,6 @@ journeyController.get('/getAllJourneys', function(request, response) {
 journeyController.get('/getAllUsersJourneys', validateSession, function(request, response) {
 
   JourneyModel.findAll({
-//    where: {JourneyUsername: request.params.username}
       where: {JourneyUsername: request.user.username}
     })
     .then(
