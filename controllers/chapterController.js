@@ -21,7 +21,7 @@ const validateSession = require('../middleware/validateSession');
 chapterController.post('/chapterCreate', validateSession, function(request, response) {
 
   let userId = request.user.id;
-  let journeyId = request.body.journey.journeyId;
+  let journeyId = request.body.chapter.journeyId;
   let chapterTitle = request.body.chapter.chapterTitle;
   let chapterDate = request.body.chapter.chapterDate;
   let chapterShortDesc = request.body.chapter.chapterShortDesc;
