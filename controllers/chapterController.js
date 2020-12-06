@@ -20,7 +20,7 @@ const validateSession = require('../middleware/validateSession');
 // Postman: POST, ^^^^^^^^^^^^^
 chapterController.post('/chapterCreate', validateSession, function(request, response) {
 
-  let userId = request.body.user.userId;
+  let userId = request.user.id;
   let journeyId = request.body.journey.journeyId;
   let chapterTitle = request.body.chapter.chapterTitle;
   let chapterDate = request.body.chapter.chapterDate;
@@ -79,7 +79,7 @@ chapterController.get('/getAllChapters', validateSession, function(request, resp
 
 
 // **********   GET ALL CHAPTERS IN JOURNEY   **********<=----- FUNCTIONAL -----=>
-// Get all chapters Controller .../getAllUsersJourneys/:username
+// Get all chapters Controller .../getAllUsersJourneys/:journeyId
 // Heroku: https://immramaserver.herokuapp.com/chapter/getAllJourneysChapters/:journeyId
 // Postman: GET, ^^^^^^^^^^^^^, username in URL
 chapterController.get('/getAllJourneysChapters/:journeyId', validateSession, function(request, response) {
