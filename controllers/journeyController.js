@@ -119,8 +119,8 @@ journeyController.get('/getOneJourney/:id', validateSession, function(request, r
 journeyController.put('/journeyUpdate/:id', validateSession, function(request, response) {
 
   let journeyId = request.params.id;
-  let JourneyUsername = request.body.user.username;
-  let userId = request.body.user.userId;
+  let JourneyUsername = request.user.username;
+  let userId = request.user.id;
   let journeyTitle = request.body.journey.journeyTitle;
   let journeyStartDate = request.body.journey.journeyStartDate;
   let journeyEndDate = request.body.journey.journeyEndDate;
