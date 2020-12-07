@@ -128,7 +128,7 @@ chapterController.get('/getOneChapter/:id', validateSession, function(request, r
 // Postman: PUT, ^^^^^^^^^^^^^, a lot
 chapterController.put('/chapterUpdate/:id', validateSession, function(request, response) {
 
-  let userId = request.body.user.userId;
+  let userId = request.user.id;
   let journeyId = request.body.journey.journeyId;
   let chapterTitle = request.body.chapter.chapterTitle;
   let chapterDate = request.body.chapter.chapterDate;
