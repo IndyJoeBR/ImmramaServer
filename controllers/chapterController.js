@@ -129,7 +129,7 @@ chapterController.get('/getOneChapter/:id', validateSession, function(request, r
 chapterController.put('/chapterUpdate/:id', validateSession, function(request, response) {
 
   let userId = request.user.id;
-  let journeyId = request.body.journey.journeyId;
+  let journeyId = request.body.chapter.journeyId;
   let chapterTitle = request.body.chapter.chapterTitle;
   let chapterDate = request.body.chapter.chapterDate;
   let chapterShortDesc = request.body.chapter.chapterShortDesc;
